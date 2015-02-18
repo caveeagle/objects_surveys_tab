@@ -1,0 +1,42 @@
+
+<!--#config errmsg="" -->
+
+ <style type="text/css">
+.tab_objects_surveys_icon {
+	background-image: url('/geosmis/tabs/objects_surveys/icon_objects_surveys.png'); 
+	width: 23px;
+	height: 23px;
+	margin-left: 3px;
+} 
+</style>
+
+<div id="tab_objects_surveys" data-dojo-type="dijit/layout/ContentPane" data-dojo-props='
+			iconClass:"tab_objects_surveys_icon",
+			onShow: function(){}'>
+    
+<div class="reducer">
+	<div style="padding:5px;">
+
+	<div align=left><input type="checkbox" title="Скрыть/показать данные" 
+	    id="objects_surveys_visible_control" onclick="" 
+	    value="" checked/>&nbsp;<b>
+	        <span id='tab_objects_surveys_tabname'>Наблюдения объектов</span></b>
+	</div>
+	<hr>
+<!--  #####################################################################  -->
+
+
+
+
+
+    
+    
+    
+<!--  #####################################################################  -->
+    </div>
+</div>
+
+</div>
+
+<!--#include virtual="objects_surveys_lang.sht" -->
+
