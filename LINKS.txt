@@ -1,9 +1,0 @@
-
-http://dev.nffc.aviales.ru/geocover_v4/?profile=mini&debug=1&newtab=1&tab_name=tab_objects_surveys
-
-dev.nffc.aviales.ru/smiswms/get_metadata.pl?width=&dt=2015-01-
-13&srs=&bbox=0,0,180,90&limit=500&layers=objects_surveys&request=GetMetadata&hei
-ght=&objects_surveys_feature=objects&dt_from=2015-01-
-03&objects_surveys_without_wkt=1
-
-     
