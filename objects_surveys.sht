@@ -42,17 +42,24 @@
 
 
 <fieldset>
-	<div id="group_contours_list">
+	<div>
 
-		<div class="list_info" id=_metadata_contours_portion_info>Найдено контуров: XXX</div>
+		<div class="list_info" id=_metadata_objects_portion_info>Найдено объектов: XXX</div>
 		
-		<div id=_metadata_objects_surveys style="height:283px; overflow:auto;" >&nbsp</div>
-
-
+		<div id=_metadata_objects_surveys style="height:240px; overflow:auto;" >&nbsp</div>
 
   	</div>
 </fieldset>
     
+<fieldset>
+	<div>
+
+		<div class="list_info" id=_metadata_surveys_portion_info>Найдено наблюдений: -</div>
+		
+		<div id=_metadata_surveys style="height:240px; overflow:auto;" >&nbsp</div>
+
+  	</div>
+</fieldset>
     
     
 <!--  #####################################################################  -->
