@@ -38,7 +38,20 @@
 <!--#include virtual="date_filter.sht" -->
 
 
+<!--  #####################################################################  -->
 
+
+<fieldset>
+	<div id="group_contours_list">
+
+		<div class="list_info" id=_metadata_contours_portion_info>Найдено контуров: XXX</div>
+		
+		<div id=_metadata_objects_surveys style="height:283px; overflow:auto;" >&nbsp</div>
+
+
+
+  	</div>
+</fieldset>
     
     
     
