@@ -3,8 +3,8 @@
 function INIT_OBJECTS_SURVEYS_TAB()
 {
     /* Init date fields */
-    document.getElementById("start_objects_date_field").innerHTML = getCurrentYear()+"-01-01";
-    document.getElementById("stop_objects_date_field").innerHTML = today();
+    //document.getElementById("start_objects_date_field").innerHTML = getCurrentYear()+"-01-01";
+    //document.getElementById("stop_objects_date_field").innerHTML = today();
 
 
     metaobj_objects_surveys = new smisMeta({  "NoFlash":1, "debug": 1, "debug_func" : function(msg){	tlog(msg); }, conf: MetaDATA_conf.objects_surveys, loadingHTML: "&nbsp;&nbsp;&nbsp;Обновление ...<br><br>",nodataHTML: "&nbsp;&nbsp;&nbsp;Нет данных<br><br>" });
@@ -40,7 +40,7 @@ function reload_surveys_parameters()
     
 	var selected = metaobj_objects_surveys.GetSelectedMetaInfo();
     
-    if(selected)
+    if(selected[0])
     {
         UID = selected[0]['uid'];
     }
@@ -54,6 +54,7 @@ function reload_surveys_parameters()
 	
 	metaobj_surveys.get();
     
+    document.getElementById("_metadata_surveys_portion_info").innerHTML = "&nbsp;";
 }
 
 
@@ -74,8 +75,28 @@ function objects_surveys_makeMetaParams(opts)
     
 }
 
-function objects_surveys_OnMetaUpdate()
-{
+function objects_surveys_OnMetaUpdate(opts)
+{ 
+	if(opts && opts.metadataid)
+	{
+		var obj = document.getElementById("_metadata_objects_portion_info");
+
+		if(defined(opts.INFO.query.count) && opts.INFO.query.count!==null)
+		{       
+				if(project_language == 'rus')
+				{
+					obj.innerHTML = "Объектов: "+opts.INFO.query.count;
+				}	
+				if(project_language == 'eng')
+				{
+					obj.innerHTML = "Objects: "+opts.INFO.query.count;
+				}	
+		}
+		else
+		{
+			obj.innerHTML = "&nbsp;";
+		}
+	}
 }
 
 function objects_surveys_OnMetaClick()
@@ -98,12 +119,54 @@ function surveys_makeMetaParams(opts)
     
 }
 
-function surveys_OnMetaUpdate()
+function surveys_OnMetaUpdate(opts)
 {
+	var obj = document.getElementById("_metadata_surveys_portion_info");
+	
+	if(opts && opts.metadataid)
+	{
+		
+
+		if(defined(opts.INFO.query.count) && opts.INFO.query.count!==null)
+		{       
+				if(project_language == 'rus')
+				{
+					obj.innerHTML = "Наблюдений: "+opts.INFO.query.count;
+				}	
+				if(project_language == 'eng')
+				{
+					obj.innerHTML = "Surveys: "+opts.INFO.query.count;
+				}	
+		}
+		else
+		{
+			obj.innerHTML = "&nbsp;";
+		}
+	}
+	
+	var selected = metaobj_objects_surveys.GetSelectedMetaInfo();
+    
+    if(!selected[0])
+    {
+       obj.innerHTML = "&nbsp;";
+    }
+	
+    
 }
 
 function surveys_OnMetaClick()
 {
 }
 
+function clearObjectsSelection()
+{
+    metaobj_objects_surveys.ClearSelection();
+    
+    reload_surveys_parameters(); // Очищает нижний список, так как задает UID = 0
+}
+
+function clearSurveysSelection()
+{
+    metaobj_surveys.ClearSelection();
+}
 

@@ -34,29 +34,69 @@
 	<hr>
 <!--  #####################################################################  -->
 
-<!--#config errmsg="" -->
-<!--#include virtual="date_filter.sht" -->
+<!--  #config errmsg="" -->
+<!--  #include virtual="date_filter.sht" -->
 
 
 <!--  #####################################################################  -->
 
+<br>
 
 <fieldset>
+<legend>
+     &nbsp;
+     <span id="tab_objects_list_label"><big>Список объектов</big></span>
+     &nbsp;
+</legend>
+    
 	<div>
 
-		<div class="list_info" id=_metadata_objects_portion_info>Найдено объектов: XXX</div>
+		<div class="list_info" id=_metadata_objects_portion_info>Объектов: XXX</div>
 		
 		<div id=_metadata_objects_surveys style="height:240px; overflow:auto;" >&nbsp</div>
+
+
+		<table border="0" cellspacing=0 cellpadding=0 width="100%">
+		  <tr>
+		    <td>
+		    </td>
+		    <td>
+				<input type=button value="Снять выделение" style="width: 90px; font-size:10px;background: #D4D0C8;" onclick="clearObjectsSelection();">
+		    </td>
+
+		    
+		  </tr>
+		</table>
 
   	</div>
 </fieldset>
     
+<br>
 <fieldset>
+<legend>
+     &nbsp;
+     <span id="tab_surveys_list_label"><big>Список наблюдений</big></span>
+     &nbsp;
+</legend>
+
 	<div>
 
-		<div class="list_info" id=_metadata_surveys_portion_info>Найдено наблюдений: -</div>
+		<div class="list_info" id=_metadata_surveys_portion_info>&nbsp</div>
 		
 		<div id=_metadata_surveys style="height:240px; overflow:auto;" >&nbsp</div>
+
+
+		<table border="0" cellspacing=0 cellpadding=0 width="100%">
+		  <tr>
+		    <td>
+		    </td>
+		    <td>
+				<input type=button value="Снять выделение" style="width: 90px; font-size:10px;background: #D4D0C8;" onclick="clearSurveysSelection();">
+		    </td>
+
+		    
+		  </tr>
+		</table>
 
   	</div>
 </fieldset>
