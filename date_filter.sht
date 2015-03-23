@@ -1,0 +1,24 @@
+
+<div style="padding-top:7px;padding-bottom:7px;font-size:14px;">
+    
+    <span id='tab_objlayers_date_label'>Дата</span><br>
+    <span id='tab_objlayers_date_from_label'>&nbsp;&nbsp;&nbsp;c</span>
+ 	&nbsp;<b><span id="start_objects_date_field"  
+ 	               onclick="scwNextAction=set_objects_date_field.runsAfterSCW(this,this.id);scwShow(this,event);"
+ 	               style="cursor: pointer; cursor: hand; text-decoration: underline">
+ 	         </span></b>
+ 	
+ 	<img id=tip_objsat_003 src="/images/calend.gif" align="absbottom" 
+ 	     onClick="scwNextAction=set_objects_date_field.runsAfterSCW(this,this.id);scwShow(scwID('start_objects_date_field'),event);">
+    <br>
+ 	<span id='tab_objlayers_date_to_label'>&nbsp;по</span>
+ 	&nbsp;<b><span id="stop_objects_date_field" 
+ 	               onclick="scwNextAction=set_objects_date_field.runsAfterSCW(this,this.id);scwShow(this,event);"
+ 	               style="cursor: pointer; cursor: hand; text-decoration: underline">
+ 	          </span></b>
+ 	<img id=tip_objsat_004 src="/images/calend.gif" align="absbottom" 
+ 	     onClick="scwNextAction=set_objects_date_field.runsAfterSCW(this,this.id);scwShow(scwID('stop_objects_date_field'),event);">
+    
+</div>
+
+

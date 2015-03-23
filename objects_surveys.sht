@@ -10,6 +10,15 @@
 } 
 </style>
 
+<script type="text/javascript" src="/geosmis/tabs/objects_surveys/objects_surveys.js"></script>
+
+<script type="text/javascript">
+
+    dojo.addOnLoad(INIT_OBJECTS_SURVEYS_TAB); 
+ 
+</script>
+
+
 <div id="tab_objects_surveys" data-dojo-type="dijit/layout/ContentPane" data-dojo-props='
 			iconClass:"tab_objects_surveys_icon",
 			onShow: function(){}'>
@@ -25,7 +34,8 @@
 	<hr>
 <!--  #####################################################################  -->
 
-
+<!--#config errmsg="" -->
+<!--#include virtual="date_filter.sht" -->
 
 
 
