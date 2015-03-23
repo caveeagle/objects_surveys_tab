@@ -45,10 +45,7 @@ function reload_surveys_parameters()
         UID = selected[0]['uid'];
     }
 
-	var params = { data_params: 
-	{ 
-		objects_surveys_object_id: UID,
-	} };
+	var params = { data_params:  {	objects_surveys_object_id: UID	} };
 
 	metaobj_surveys.SetDataParams(params);
 	
@@ -102,6 +99,7 @@ function objects_surveys_OnMetaUpdate(opts)
 function objects_surveys_OnMetaClick()
 { 
 		reload_surveys_parameters();
+		setObjectsLayers();
 }
 
 
@@ -156,6 +154,7 @@ function surveys_OnMetaUpdate(opts)
 
 function surveys_OnMetaClick()
 {
+    setSurveysLayers();
 }
 
 function clearObjectsSelection()
@@ -169,4 +168,44 @@ function clearSurveysSelection()
 {
     metaobj_surveys.ClearSelection();
 }
+
+function setObjectsLayers()
+{ 
+    var selected = metaobj_objects_surveys.GetSelectedMetaInfo();
+    if(selected[0])
+    {
+    	var UID = selected[0]['uid'];
+    	
+    	if(layers["objects_surveys"].params)
+    	{
+    	    layers["objects_surveys"].params["objects_surveys_selected_id"] = UID;
+    	}
+    	
+    	mapobj.LayerShow('objects_surveys');
+    }
+    else
+    {
+    	mapobj.LayerHide('objects_surveys');
+    }		
+}	
+
+function setSurveysLayers()
+{ 
+    var selected = metaobj_surveys.GetSelectedMetaInfo();
+    if(selected[0])
+    {
+    	var UID = selected[0]['uid'];
+    	
+    	if(layers["surveys"].params)
+    	{
+    	    layers["surveys"].params["objects_surveys_selected_id"] = UID;
+    	}
+    	
+    	mapobj.LayerShow('surveys');
+    }
+    else
+    {
+    	mapobj.LayerHide('surveys');
+    }		
+}	
 
