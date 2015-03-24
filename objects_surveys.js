@@ -55,6 +55,10 @@ function reload_surveys_parameters()
 }
 
 
+function tab_objects_surveys_onactive()
+{
+	reload_objects_surveys_parameters();
+}	
 
 
 
