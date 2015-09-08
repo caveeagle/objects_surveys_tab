@@ -68,7 +68,7 @@ function objects_surveys_makeMetaParams(opts)
 	
 	if(opts.DATA.name) { params.name = opts.DATA.name; }
 
-	if(opts.DATA.type) { params.type = opts.DATA.type; }
+	if(opts.DATA.obj_type) { params.type = opts.DATA.obj_type; }
 
 	if(opts.DATA.condition) { params.condition = opts.DATA.condition; }
     
@@ -213,3 +213,36 @@ function setSurveysLayers()
     }		
 }	
 
+function deleteObjectContour()
+{
+    alert("STUB (delete)");
+}
+
+function updateObjectsList()
+{
+		clearObjectsSelection();
+
+	    var params = { data_params:  {	nocache: randomString(5)	} };
+	    metaobj_objects_surveys.SetDataParams(params);
+		metaobj_objects_surveys.get();
+}
+
+var tmpOldURL = poly2dbUrl;
+function tmpAddPolyMode()
+{
+    if(document.getElementById("objectsSurveysAddControl").checked)
+    {
+        poly2dbUrl = "/geosmis_projects/ffm/poly2db/cgi/poly2db_form.pl";
+    }
+    else
+    {
+        poly2dbUrl = tmpOldURL;
+    }
+        
+}
+
+function addObjectToList()
+{
+    var addObjectURL = "/geosmis_projects/ffm/poly2db/templates/object2db_add.html";
+    var wnd = window.open(addObjectURL,"_obj_new","width=600,height=400,left=100,top=100,location=no,toolbar=no,scrollbars=no,resizable=yes" );	
+}

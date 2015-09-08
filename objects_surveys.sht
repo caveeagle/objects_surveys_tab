@@ -57,15 +57,36 @@
 
 
 		<table border="0" cellspacing=0 cellpadding=0 width="100%">
+
 		  <tr>
-		    <td>
-		    </td>
 		    <td>
 				<input type=button value="Снять выделение" style="width: 90px; font-size:10px;background: #D4D0C8;" onclick="clearObjectsSelection();">
 		    </td>
 
+		    <td>
+				<input type=button 
+				       value="Обновить список" 
+				       style="width: 90px; font-size:10px;background: #D4D0C8;" 
+				       onclick="updateObjectsList();">
+		    </td>
+		    <td align="right">
+               <!--#config errmsg="" -->
+               <!--#include virtual="/geosmis/tabs/objects_surveys/object_delete_btn.txt" -->
+		    </td>
+
+		  </tr>
+
+		  <tr>
+
+		    <td colspan=3 align=center>
+				<input type=button 
+				       value="Добавить объект" 
+				       style="width: 160px; font-size:10px;font-weight:bold;background: #D4D0C8;" 
+				       onclick="addObjectToList();">
+		    </td>
 		    
 		  </tr>
+
 		</table>
 
   	</div>
@@ -101,7 +122,15 @@
   	</div>
 </fieldset>
     
-    
+<br><br>
+<input  type="checkbox" 
+        title="Включить режим добавления контуров" 
+        autocomplete=off
+	    id="objectsSurveysAddControl"
+	    onchange="tmpAddPolyMode();" 
+	    value="" />
+<label><b>Включить режим добавления контуров</b></label>
+	        
 <!--  #####################################################################  -->
     </div>
 </div>
@@ -110,3 +139,6 @@
 
 <!--#include virtual="objects_surveys_lang.sht" -->
 
+
+	    
+	    
