@@ -66,14 +66,29 @@ function objects_surveys_makeMetaParams(opts)
 {  
 	var params={};
 	
-	if(opts.DATA.name) { params.name = opts.DATA.name; }
+	if(opts.DATA.obj_name) { params.name = opts.DATA.obj_name; }
 
-	if(opts.DATA.obj_type) { params.type = opts.DATA.obj_type; }
-
-	if(opts.DATA.condition) { params.condition = opts.DATA.condition; }
+    if(opts.DATA.obj_condition_id) 
+	{ 
+	    var cond_types = opts.INFO.info_type.obj_condition_id;
+	    
+	    var cond = opts.DATA.obj_condition_id;
+	    
+        /*if( cond_types[cond] !== undefined )
+        {
+            alert(cond);
+            //params.condition = cond_types[cond].rus_name;
+            alert(cond_types[cond].rus_name);
+        }
+        else
+        {
+            params.condition =  cond;
+        } */
+        
+        params.condition =  cond;
+    }   
     
 	return params;
-    
 }
 
 function objects_surveys_OnMetaUpdate(opts)
@@ -115,7 +130,7 @@ function surveys_makeMetaParams(opts)
 	
 	if(opts.DATA.id) { params.id = opts.DATA.id; }
 
-	if(opts.DATA.dt) { params.dt = opts.DATA.dt; }
+	if(opts.DATA.sur_dt) { params.dt = opts.DATA.sur_dt; }
     
 	return params;
     
