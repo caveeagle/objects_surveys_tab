@@ -1,11 +1,14 @@
 
+var OBJECT_NAME = "flood";
+var OBJECT_TYPE_ID = 4; // FLOODS
 
 function INIT_OBJECTS_SURVEYS_TAB()
 {
     /* Init date fields */
-    //document.getElementById("start_objects_date_field").innerHTML = getCurrentYear()+"-01-01";
-    //document.getElementById("stop_objects_date_field").innerHTML = today();
-
+    document.getElementById("start_objects_date_field").innerHTML = getCurrentYear()+"-01-01";
+    document.getElementById("stop_objects_date_field").innerHTML = today();
+    
+    document.getElementById("tab_objects_list_label").innerHTML = "<big>Список наводнений</big>";
 
     metaobj_objects_surveys = new smisMeta({  "NoFlash":1, "debug": 1, "debug_func" : function(msg){	tlog(msg); }, conf: MetaDATA_conf.objects_surveys, loadingHTML: "&nbsp;&nbsp;&nbsp;Обновление ...<br><br>",nodataHTML: "&nbsp;&nbsp;&nbsp;Нет данных<br><br>" });
     metaobj_objects_surveys.renderMakeParams = objects_surveys_makeMetaParams;
@@ -21,7 +24,8 @@ function INIT_OBJECTS_SURVEYS_TAB()
 }
 
 function set_objects_date_field()
-{
+{ 
+   reload_objects_surveys_parameters(); 
 }
 
 function reload_objects_surveys_parameters()
@@ -29,6 +33,17 @@ function reload_objects_surveys_parameters()
 
 	if(active_tab=="tab_objects_surveys")
 	{
+    	var today_dt = today();
+    	
+    	var filter = '{"obj_type_id":"'+OBJECT_TYPE_ID	+'"}';
+    	
+        var dt_from = document.getElementById("start_objects_date_field").innerHTML;
+        var dt = document.getElementById("stop_objects_date_field").innerHTML;
+    	
+    	var params = { data_params:  {	"dt" : dt, "dt_from" : dt_from, "objects_surveys_filter" : filter} };
+    
+    	metaobj_objects_surveys.SetDataParams(params);
+
 		metaobj_objects_surveys.get();
 	}	  
     
@@ -44,8 +59,10 @@ function reload_surveys_parameters()
     {
         UID = selected[0]['uid'];
     }
-
-	var params = { data_params:  {	objects_surveys_object_id: UID	} };
+    
+    var today_dt = today();
+    
+	var params = { data_params:  {	objects_surveys_object_id: UID, "dt" : today_dt	} };
 
 	metaobj_surveys.SetDataParams(params);
 	
@@ -68,24 +85,30 @@ function objects_surveys_makeMetaParams(opts)
 	
 	if(opts.DATA.obj_name) { params.name = opts.DATA.obj_name; }
 
+	if(opts.DATA.obj_dt) { params.dt = opts.DATA.obj_dt.substr(0,10); }
+    
     if(opts.DATA.obj_condition_id) 
 	{ 
-	    var cond_types = opts.INFO.info_type.obj_condition_id;
+	    var cond_types = opts.INFO.info_type.object_conditions.obj_condition_id;
 	    
 	    var cond = opts.DATA.obj_condition_id;
 	    
-        /*if( cond_types[cond] !== undefined )
+        if( cond_types[cond] !== undefined )
         {
-            alert(cond);
-            //params.condition = cond_types[cond].rus_name;
-            alert(cond_types[cond].rus_name);
+            if(project_language=="rus")
+            {
+                params.condition = cond_types[cond].rus_name;
+            }
+            else
+            {
+                params.condition = cond_types[cond].eng_name;
+            }
+                
         }
         else
         {
             params.condition =  cond;
-        } */
-        
-        params.condition =  cond;
+        } 
     }   
     
 	return params;
@@ -179,13 +202,16 @@ function surveys_OnMetaClick()
 function clearObjectsSelection()
 {
     metaobj_objects_surveys.ClearSelection();
+    setObjectsLayers();
     
     reload_surveys_parameters(); // Очищает нижний список, так как задает UID = 0
+    setSurveysLayers();
 }
 
 function clearSurveysSelection()
 {
-    metaobj_surveys.ClearSelection();
+    metaobj_surveys.ClearSelection(); 
+    setSurveysLayers();
 }
 
 function setObjectsLayers()
@@ -230,7 +256,42 @@ function setSurveysLayers()
 
 function deleteObjectContour()
 {
-    alert("STUB (delete)");
+	var selected = metaobj_objects_surveys.GetSelectedMetaInfo();
+    
+    if(selected[0])
+    {
+        if(confirm("Удалить объект?"))
+        {
+            var UID = selected[0]['uid'];
+            
+            var delObjectURL = "/geosmis_projects/ffm/poly2db/cgi/object_delete.pl?uid="+UID+"&object_type=object";
+            var wnd = window.open(delObjectURL,"_obj_del","width=600,height=400,left=100,top=100,location=no,toolbar=no,scrollbars=no,resizable=yes" );	
+        }
+    }
+    else
+    {
+        alert("Выделите объект");
+    }
+}
+
+function deleteSurveyContour()
+{
+	var selected = metaobj_surveys.GetSelectedMetaInfo();
+    
+    if(selected[0])
+    {
+        if(confirm("Удалить наблюдение?"))
+        {
+            var UID = selected[0]['uid'];
+            
+            var delObjectURL = "/geosmis_projects/ffm/poly2db/cgi/object_delete.pl?uid="+UID+"&object_type=survey";
+            var wnd = window.open(delObjectURL,"_obj_del","width=600,height=400,left=100,top=100,location=no,toolbar=no,scrollbars=no,resizable=yes" );	
+        }
+    }
+    else
+    {
+        alert("Выделите наблюдение");
+    }
 }
 
 function updateObjectsList()

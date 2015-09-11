@@ -1,0 +1,4 @@
+<input type=button 
+value="Удалить" 
+style="width: 90px; font-size:10px;background: #D4D0C8;" 
+onclick="deleteSurveyContour();">

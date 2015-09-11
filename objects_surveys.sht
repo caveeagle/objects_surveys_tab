@@ -29,18 +29,28 @@
 	<div align=left><input type="checkbox" title="Скрыть/показать данные" 
 	    id="objects_surveys_visible_control" onclick="" 
 	    value="" checked/>&nbsp;<b>
-	        <span id='tab_objects_surveys_tabname'>Наблюдения объектов</span></b>
+	        <span id='tab_objects_surveys_tabname'>Картирование наводнений</span></b>
 	</div>
 	<hr>
 <!--  #####################################################################  -->
 
-<!--  #config errmsg="" -->
-<!--  #include virtual="date_filter.sht" -->
+<!--#config errmsg="" -->
+<!--#include virtual="date_filter.sht" -->
 
 
 <!--  #####################################################################  -->
 
 <br>
+ <fieldset>
+	<div id="group_layers_688" style="display: block">
+	
+    <input type="checkbox" title="Отображать все наводнения" disabled value="" />
+    &nbsp;
+    <b>Отображать все наводнения</b>
+    
+  	</div>
+ </fieldset>
+
 
 <fieldset>
 <legend>
@@ -51,7 +61,7 @@
     
 	<div>
 
-		<div class="list_info" id=_metadata_objects_portion_info>Объектов: XXX</div>
+		<div class="list_info" id=_metadata_objects_portion_info>Наводнений: XXX</div>
 		
 		<div id=_metadata_objects_surveys style="height:240px; overflow:auto;" >&nbsp</div>
 
@@ -92,7 +102,17 @@
   	</div>
 </fieldset>
     
-<br>
+<br><br>
+ <fieldset>
+	<div id="group_layers_688" style="display: block">
+	
+    <input type="checkbox" title="Отображать все наблюдения" disabled value="" />
+    &nbsp;
+    <b>Отображать все наблюдения</b>
+    
+  	</div>
+ </fieldset>
+
 <fieldset>
 <legend>
      &nbsp;
@@ -110,26 +130,37 @@
 		<table border="0" cellspacing=0 cellpadding=0 width="100%">
 		  <tr>
 		    <td>
-		    </td>
-		    <td>
 				<input type=button value="Снять выделение" style="width: 90px; font-size:10px;background: #D4D0C8;" onclick="clearSurveysSelection();">
 		    </td>
 
+		    <td style="width: 90px;"> 
+		        &nbsp;
+		    </td>
+
+		    <td>
+
+               <!--#config errmsg="" -->
+               <!--#include virtual="/geosmis/tabs/objects_surveys/survey_delete_btn.txt" -->
+
+		    </td>
 		    
 		  </tr>
 		</table>
 
   	</div>
 </fieldset>
-    
 <br><br>
-<input  type="checkbox" 
-        title="Включить режим добавления контуров" 
-        autocomplete=off
-	    id="objectsSurveysAddControl"
-	    onchange="tmpAddPolyMode();" 
-	    value="" />
-<label><b>Включить режим добавления контуров</b></label>
+
+<!--#if expr="$SERVER_NAME=dev.nffc.aviales.ru"-->    
+    <input  type="checkbox" 
+            title="Включить режим добавления контуров" 
+            autocomplete=off
+    	    id="objectsSurveysAddControl"
+    	    onchange="tmpAddPolyMode();" 
+    	    value="" />
+    <label><b>Включить режим добавления контуров</b></label>
+<!--#endif -->
+
 	        
 <!--  #####################################################################  -->
     </div>
